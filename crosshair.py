@@ -4,14 +4,14 @@ from math import cos, sin
 
 line_wid = 3   # 线粗细（像素）
 line_len = 30  # 线长度（像素）
-line_gap = 5   # 中央留空长度（像素）
-threshold = 2  # 鼠标点击的误差范围（像素）
+line_gap = 6   # 中央留空长度（像素）
+threshold = 3  # 鼠标点击的误差范围（像素）
 line_color = 'light green'  # 十字颜色
 
 cross_type_horizontal = False  # 绘制横十字或斜十字
 theta = 3.1416/4 # 旋转45度
-line_len_diag = int(line_len / (2 ** 0.5)) # 斜十字线段长度，除以根号2
-line_gap_diag = int(line_gap / (2 ** 0.5)) # 斜十字中央留空长度，除以根号2
+line_len_diag = int(line_len / (2 ** 0.5)) + 1 # 斜十字线段长度，除以根号2
+line_gap_diag = int(line_gap / (2 ** 0.5)) + 1 # 斜十字中央留空长度，除以根号2
 screen_width, screen_height = pyautogui.size()
 center_x = int(screen_width / 2) # 屏幕中心x坐标
 center_y = int(screen_height / 2) # 屏幕中心y坐标
@@ -45,7 +45,6 @@ def Cross_Update(canvas, center_x, center_y, line_len, line_wid):
         canvas.create_line(center_x + line_gap_diag, center_y + line_gap_diag, center_x + line_len_diag, center_y + line_len_diag, width=line_wid, fill=line_color) # 准星右下线段
         canvas.create_line(center_x - line_len_diag, center_y + line_len_diag, center_x - line_gap_diag, center_y + line_gap_diag, width=line_wid, fill=line_color) # 准星左下线段
         canvas.create_line(center_x + line_gap_diag, center_y - line_gap_diag, center_x + line_len_diag, center_y - line_len_diag, width=line_wid, fill=line_color) # 准星右上线段
-
 
 
 # @brief: 检测鼠标是否在准星范围内
